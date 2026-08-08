@@ -1,0 +1,104 @@
+---
+pagination:
+  data: collections.allContent
+  size: 1
+  alias: item
+permalink: '/assets/og-images/{{ item.fileSlug }}-preview.svg'
+eleventyExcludeFromCollections: true
+---
+{%- set postType = item.data.contentType -%}
+{%- if postType == 'Bookmark' -%}
+  {%- set pillWidth = 138 -%}
+{%- elseif postType == 'Reply' -%}
+  {%- set pillWidth = 92 -%}
+{%- elseif postType == 'Note' -%}
+  {%- set pillWidth = 88 -%}
+{%- else -%}
+  {%- set pillWidth = 82 -%}
+{%- endif -%}
+{%- if item.data.title -%}
+  {%- set displayTitle = item.data.title -%}
+{%- else -%}
+  {%- set displayTitle = item.templateContent | striptags | truncate(100, false, '…') -%}
+{%- endif -%}
+{%- set titleInLines = displayTitle | splitlines(25) -%}
+{%- set numberOfLines = titleInLines.length -%}
+{%- if numberOfLines == 1 -%}
+  {%- set verticalStartingPoint = 310 -%}
+{%- elseif numberOfLines == 2 -%}
+  {%- set verticalStartingPoint = 270 -%}
+{%- elseif numberOfLines == 3 -%}
+  {%- set verticalStartingPoint = 230 -%}
+{%- elseif numberOfLines == 4 -%}
+  {%- set verticalStartingPoint = 200 -%}
+{%- else -%}
+  {%- set verticalStartingPoint = 170 -%}
+{%- endif -%}
+<svg
+  width="1200"
+  height="630"
+  viewBox="0 0 1200 630"
+  version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- border frame -->
+  <rect width="1200" height="630" fill="#e78b8c" />
+  <rect x="12" y="12" width="1176" height="606" fill="#8bbae7" />
+
+  <!-- type label pill -->
+  <rect x="80" y="52" rx="18" ry="18" width="{{ pillWidth }}" height="36" fill="#e7e68b" />
+  <text
+    font-family="system-ui, sans-serif"
+    font-size="18"
+    font-weight="700"
+    fill="#240a37"
+    text-anchor="middle"
+    dominant-baseline="central"
+  >
+    <tspan x="{{ 80 + pillWidth / 2 }}" y="70">{{ postType }}</tspan>
+  </text>
+
+  <!-- date -->
+  <text
+    font-family="system-ui, sans-serif"
+    font-size="22"
+    font-weight="500"
+    fill="#240a37"
+    text-anchor="end"
+  >
+    <tspan x="1120" y="76">{{ item.date | formatDate('DD / MM / YYYY') }}</tspan>
+  </text>
+
+  <!-- title -->
+  <text
+    font-family="system-ui, sans-serif"
+    font-size="64"
+    font-weight="700"
+    fill="#240a37"
+  >
+    {%- for line in titleInLines %}
+    <tspan x="80" y="{{ verticalStartingPoint + loop.index0 * 78 }}">{{ line }}</tspan>
+    {%- endfor %}
+  </text>
+
+  <!-- site name -->
+  <text
+    font-family="system-ui, sans-serif"
+    font-size="22"
+    font-weight="500"
+    fill="#240a37"
+  >
+    <tspan x="80" y="580">{{ meta.siteName }}</tspan>
+  </text>
+
+  <!-- author -->
+  <text
+    font-family="system-ui, sans-serif"
+    font-size="22"
+    font-weight="500"
+    fill="#240a37"
+    text-anchor="end"
+  >
+    <tspan x="1120" y="580">{{ meta.author.name }}</tspan>
+  </text>
+</svg>

@@ -1,0 +1,28 @@
+node_modules/
+_site/
+.cache/
+dist/
+.env
+.dev.vars
+.DS_Store
+
+# Environment files (wildcard)
+.env.*
+!.env.example
+
+# Claude Code
+CLAUDE.md
+
+# Wrangler local state
+.wrangler/
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Service credentials
+credentials.json
+service-account.json
+

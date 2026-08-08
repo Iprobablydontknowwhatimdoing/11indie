@@ -1,0 +1,18 @@
+<div class="h-card" rel="me">
+  {% if meta.author.photo %}
+    {% image "./src/assets/images/avatar.jpg", meta.author.name, { widths: [80, 160], sizes: "80px", class: "u-photo" } %}
+  {% endif %}
+  <a class="p-name u-url" href="{{ meta.url }}">{{ meta.author.name }}</a>
+  {% if meta.author.note %}
+    <p class="p-note">{{ meta.author.note }}</p>
+  {% endif %}
+  
+  <div class="cluster">
+    {% for link in meta.author.relMe %}
+      <a class="u-url" href="{{ link.url }}" rel="me">{{ link.name }}</a>
+    {% endfor %}
+    {% if meta.author.email %}
+      <a class="u-email" href="mailto:{{ meta.author.email }}">{{ meta.author.email }}</a>
+    {% endif %}
+  </div>
+</div>

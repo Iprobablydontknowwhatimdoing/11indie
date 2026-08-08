@@ -1,0 +1,19 @@
+/* Figure */
+figure {
+  margin: 0;
+}
+
+figure > * + * {
+  margin-block-start: var(--space-2xs);
+}
+
+figure img,
+figure video,
+figure picture {
+  border-radius: 3px;
+}
+
+figcaption {
+  font-size: 0.875em;
+  font-style: italic;
+}
