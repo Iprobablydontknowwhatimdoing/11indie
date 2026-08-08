@@ -4,9 +4,10 @@ const domain = new URL(url).hostname;
 module.exports = {
   url,
   domain,
-  siteName: 'ElevIndieWeb Starter',
+  siteName: '11tyIndieWeb',
   siteDescription: 'An Eleventy Starter for IndieWeb with support for WebMentions, IndieAuth and MicroPub.',
   lang: 'en',
+  locale: 'en-US',
   author: {
     name: 'Josh Vogt',
     email: 'joshcvogt@proton.me',

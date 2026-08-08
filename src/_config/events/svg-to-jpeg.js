@@ -22,8 +22,8 @@ async function svgToJpeg() {
   for (var filename of files) {
     if (!filename.endsWith('.svg')) continue;
 
-    var outputFilename = filename.substring(0, filename.length - 4);
-    var outputPath = path.join(ogImagesDir, outputFilename + '.jpeg');
+    var outputFilename = filename.substring(0, filename.length - 3);
+    var outputPath = path.join(ogImagesDir, outputFilename + 'jpeg');
 
     if (!fs.existsSync(outputPath)) {
       var imageUrl = socialPreviewImagesDir + filename;

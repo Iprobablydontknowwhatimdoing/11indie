@@ -1,17 +1,9 @@
-function getAllPosts(collectionApi) {
-  return collectionApi.getFilteredByGlob('src/posts/**/*.md').reverse();
-}
+const collections = ['posts', 'notes', 'bookmarks', 'replies'];
 
-function getAllNotes(collectionApi) {
-  return collectionApi.getFilteredByGlob('src/notes/**/*.md').reverse();
-}
-
-function getAllBookmarks(collectionApi) {
-  return collectionApi.getFilteredByGlob('src/bookmarks/**/*.md').reverse();
-}
-
-function getAllReplies(collectionApi) {
-  return collectionApi.getFilteredByGlob('src/replies/**/*.md').reverse();
+function getFromFolder(collectionApi, folder) {
+  if (folder === 'all')
+    return collections.flatMap((folderName) => getFromFolder(collectionApi, folderName));
+  return collectionApi.getFilteredByGlob(`src/${folder}/**/*.md`).reverse();
 }
 
 function showInSitemap(collectionApi) {
@@ -26,7 +18,7 @@ function tagList(collectionApi) {
     if (item.data.tags) {
       item.data.tags
         .filter(function (tag) {
-          return !['posts', 'notes', 'bookmarks', 'replies', 'all'].includes(tag);
+          return !collections.push('all').includes(tag);
         })
         .forEach(function (tag) {
           tags.add(tag);
@@ -38,10 +30,7 @@ function tagList(collectionApi) {
 
 function getAllContent(collectionApi) {
   return [
-    ...collectionApi.getFilteredByGlob('src/posts/**/*.md'),
-    ...collectionApi.getFilteredByGlob('src/notes/**/*.md'),
-    ...collectionApi.getFilteredByGlob('src/bookmarks/**/*.md'),
-    ...collectionApi.getFilteredByGlob('src/replies/**/*.md')
+    ...collectionApi.getFromFolder('all')
   ].sort(function (a, b) {
     return b.date - a.date;
   });

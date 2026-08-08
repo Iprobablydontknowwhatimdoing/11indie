@@ -1,7 +1,7 @@
 {
-  "name": "11ndtyweb",
-  "version": "1.0.0",
-  "description": "",
+  "name": "11tyindie-elliot",
+  "version": "0.0.1",
+  "description": "An 11ty starter for the IndieWeb, for me (elliot)",
   "main": "index.js",
   "scripts": {
     "start": "eleventy --serve",
@@ -12,16 +12,16 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@11ty/eleventy": "^3.1.2",
-    "@11ty/eleventy-fetch": "^5.1.1",
-    "@11ty/eleventy-img": "^6.0.4",
-    "@11ty/eleventy-plugin-rss": "^2.0.4",
-    "js-yaml": "^4.1.1",
-    "slugify": "^1.6.6",
-    "yaml": "^2.8.2"
+    "@11ty/eleventy": "^3.1.6",
+    "@11ty/eleventy-fetch": "^5.1.3",
+    "@11ty/eleventy-img": "^7.0.0",
+    "@11ty/eleventy-plugin-rss": "^3.0.0",
+    "js-yaml": "^5.2.3",
+    "slugify": "^1.6.9",
+    "yaml": "^2.9.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260219.0",
-    "lightningcss": "^1.31.1"
+    "@cloudflare/workers-types": "^5.20260807.2",
+    "lightningcss": "^1.33.0"
   }
 }

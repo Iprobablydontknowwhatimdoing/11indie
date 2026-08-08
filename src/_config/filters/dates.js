@@ -15,7 +15,7 @@ function formatDate(date, format) {
 
   // Default: readable date
   options = { year: 'numeric', month: 'long', day: 'numeric' };
-  return d.toLocaleDateString('en-US', options);
+  return d.toLocaleDateString(meta.locale, options);
 }
 
 module.exports = { toISOString, formatDate };
