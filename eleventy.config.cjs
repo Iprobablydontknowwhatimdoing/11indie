@@ -4,10 +4,12 @@ const { getAllPosts, getAllNotes, getAllBookmarks, getAllReplies, getAllContent,
 const filters = require('./src/_config/filters');
 const { year, image } = require('./src/_config/shortcodes');
 const events = require('./src/_config/events');
+const webc = require("@11ty/eleventy-plugin-webc");
 
 module.exports = function (eleventyConfig) {
   // Plugins
   eleventyConfig.addPlugin(rssPlugin);
+  eleventyConfig.addPlugin(webc);
   // Build events
   eleventyConfig.on('eleventy.after', async function () {
     await events.cssBundle();

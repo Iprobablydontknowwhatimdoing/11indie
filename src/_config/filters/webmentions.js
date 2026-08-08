@@ -14,9 +14,7 @@ function getWebmentionsForUrl(mentions, url) {
  */
 function getWebmentionsByType(mentions, type) {
   if (!mentions) return [];
-  return mentions.filter(function (mention) {
-    return mention['wm-property'] === type;
-  });
+  return mentions.filter((mention) => mention['wm-property'] === type);
 }
 
 module.exports = { getWebmentionsForUrl, getWebmentionsByType };

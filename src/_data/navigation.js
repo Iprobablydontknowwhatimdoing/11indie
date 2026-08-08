@@ -1,12 +1,12 @@
 module.exports = {
-  top: [
+  header: [
     { text: 'Home', url: '/' },
     { text: 'Posts', url: '/posts/' },
     { text: 'Notes', url: '/notes/' },
     { text: 'Bookmarks', url: '/bookmarks/' },
     { text: 'Blogroll', url: '/blogroll/' }
   ],
-  bottom: [
+  foooter: [
     { text: 'About', url: '/about/' },
     { text: 'Contact', url: '/contact/' },
     { text: 'Blogroll', url: '/blogroll/' },

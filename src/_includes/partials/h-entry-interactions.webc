@@ -1,0 +1,77 @@
+<script webc:setup>
+  const pageUrl = meta.url + page.url;
+  const mentions = webmentions.getWebMentionsForUrl(pageUrl);
+  const likes = mentions.getWebmentionsByType('like-of');
+  const reposts = mentions.getWebmentionsByType('repost-of');
+  const replies = mentions.getWebmentionsByType('reply-of');
+  const bookmarks = mentions.getWebmentionsByType('bookmark-of');
+  const linkedMentions = mentions.getWebmentionsByType('mention-of');
+</script>
+
+<section class="webmentions" :data-webmention-url="pageUrl" aria-label="Webmentions">
+
+  <section aria-label="Likes" webc:if="likes.length > 0">
+    <h3 :@text="`Likes ${likes.length}`"></h3>
+    <ul role="list">
+      <li webc:for="like of likes" webc:if="like.author">
+        <a :href="like.author.url" :@text="like.author.name">
+          <img webc:if="like.author.photo" :src="like.author.photo" :alt="like.author.name" width="32" height="32" loading="lazy">
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section aria-label="Reposts" webc:if="reposts.length > 0">
+    <h3 :@text="`Reposts (${reposts.length})`"></h3>
+    <ul role="list">
+      <li webc:for="repost of reposts">
+        <a webc:if="repost.author" :href="repost.author.url" :@text="repost.author.name">
+          <img webc:if="repost.author.photo" :src="repost.author.photo" :alt="repost.author.name" width="32" height="32" loading="lazy">
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section aria-label="Bookmarks" webc:if="bookmarks.length > 0">
+    <h3 :@text="`Bookmarks (${bookmarks.length})`">
+    <ul role="list">
+      <li webc:for="bookmark of bookmarks">
+        <a webc:if="bookmark.author" :href="bookmark.author.url" :@text="bookmark.author.name">
+          <img webc:if="bookmark.author.photo" :src="bookmark.author.photo" :alt="bookmark.author.name" width="32" height="32" loading="lazy">
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section aria-label="Mentions" webc:if="linkedMentions.length > 0">
+    <h3 :@text="`Mentions (${linkedMentions.length})`"></h3>
+    <ol role="list">
+      <li class="h-cite" webc:for="mention of linkedMentions">
+        <p>
+          <a class="p-author h-card" :href="mention.author.url" :@text="mention.author.name">
+            <img webc:if="mention.author.photo" :src="mention.author.photo" :alt="mention.author.name" width="44" height="44" loading="lazy">
+          </a>
+          <time class="dt-published" :datetime="mention.published" :@text="formatDate(mention.published)"></time>
+        </p>
+        <p class="p-content" webc:if="mention.content && mention.content.text" :@text="mention.content.text"></p>
+        <a class="u-url" webc:if="mention.url" :href="mention.url">View original</a>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-label="Replies" webc:if="replies.length > 0">
+    <h3 :@text="`Replies (${replies.length})`"></h3>
+    <ol role="list">
+      <li class="h-cite" webc:for="reply of replies">
+        <p>
+          <a class="p-author h-card" :href="reply.author.url" :@text="reply.author.name">
+            <img webc:if="reply.author.photo" :src="reply.author.photo" :alt="reply.author.name" width="44" height="44" loading="lazy">
+          </a>
+          <time class="dt-published" :datetime="reply.published" :@text="formatDate(reply.published)"></time>
+        </p>
+        <p class="p-content" webc:if="reply.content && reply.content.text" :@text="reply.content.text"></p>
+        <a class="u-url" webc:if="reply.url" :href="reply.url">View original</a>
+      </li>
+    </ol>
+  </section>
+</section>
