@@ -8,7 +8,7 @@
   const linkedMentions = mentions.getWebmentionsByType('mention-of');
 </script>
 
-<aside class="webmentions" :data-webmention-url="pageUrl" aria-label="Webmentions">
+<aside class="webmentions" :data-webmention-url="pageUrl" aria-label="Webmentions" :id="id || undefined">
   <h2>Webmentions</h2>
 
   <section aria-label="Likes" webc:if="likes.length > 0">
