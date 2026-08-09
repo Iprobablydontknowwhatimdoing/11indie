@@ -1,8 +1,20 @@
 ---
 layout: base
 ---
-<h-entry>
+<!--something happened here with a memory leak, idk why-->
+<article class="h-entry">
+  <h-entry-meta></h-entry-meta>
+  <section class="e-content">
     <slot>
-        Whoops! Nothing Here :(
+      Whoops! Nothing Here.
     </slot>
-</h-entry>
+  </section>
+  <aside role="note">
+    Posted
+    <time class="dt-published" :datetime="toISOString(date)" :@text="`formatDate(date)`"></time>.
+  </aside>
+
+  <a class="u-url" :href="$data.meta.url + $data.page.url">Permalink</a>
+  <a class="p-author h-card" :href="$data.meta.url" :@text="$data.meta.author.name"></a>
+  <h-entry-interactions @id="entry-interactions"></h-entry-interactions>
+</article>
