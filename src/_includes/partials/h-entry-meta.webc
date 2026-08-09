@@ -1,0 +1,13 @@
+<h1 class="p-name" webc:if="title" :@text="title"></h1>
+<h1 webc:elif="contentType === 'Note'">Note</h1>
+<p webc:if="bookmarkOf"><a class="u-bookmark-of" :href="bookmarkOf" :@text="bookmarkOf"></a></p>
+<p webc:if="inReplyTo">
+  In reply to <a class="u-in-reply-to" :href="inReplyTo" :@text="inReplyTo"></a>
+</p>
+<p webc:if="summary" class="p-summary" :@text="summary"></p>
+<ul webc:if="tags" role="list">
+  <li webc:for="tag of tags" webc:if="tag !== 'posts' && tag !== 'notes' && tag !== 'replies'">
+    <a class="p-category" :href="`/tags/${slugify(tag)}/`" :@text="tag">
+    </a>
+  </li>
+</ul>
