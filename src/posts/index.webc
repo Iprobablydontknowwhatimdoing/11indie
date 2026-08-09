@@ -1,0 +1,8 @@
+---
+layout: base
+title: Posts
+permalink: "/posts/"
+description: All blog posts.
+---
+<h1 :@text="title"></h1>
+<h-feed :@feedItems="collections.allPosts" @feedTitle="Posts"></h-feed>

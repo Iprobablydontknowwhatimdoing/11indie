@@ -1,11 +1,11 @@
 <script webc:setup>
-  const pageUrl = meta.url + page.url;
-  const mentions = webmentions.getWebMentionsForUrl(pageUrl);
-  const likes = mentions.getWebmentionsByType('like-of');
-  const reposts = mentions.getWebmentionsByType('repost-of');
-  const replies = mentions.getWebmentionsByType('reply-of');
-  const bookmarks = mentions.getWebmentionsByType('bookmark-of');
-  const linkedMentions = mentions.getWebmentionsByType('mention-of');
+  const pageUrl = $data.meta.url + $data.page.url;
+  const mentions = this.getWebmentionsForUrl(webmentions, pageUrl);
+  const likes = this.getWebmentionsByType(mentions, 'like-of');
+  const reposts = this.getWebmentionsByType(mentions, 'repost-of');
+  const replies = this.getWebmentionsByType(mentions, 'reply-of');
+  const bookmarks = this.getWebmentionsByType(mentions, 'bookmark-of');
+  const linkedMentions = this.getWebmentionsByType(mentions, 'mention-of');
 </script>
 
 <aside class="webmentions" :data-webmention-url="pageUrl" aria-label="Webmentions" :id="id || undefined">

@@ -1,0 +1,8 @@
+---
+layout: base
+---
+<h-entry>
+    <slot>
+        Whoops! Nothing Here :(
+    </slot>
+</h-entry>

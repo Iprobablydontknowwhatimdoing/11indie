@@ -1,0 +1,24 @@
+<link rel="indieauth-metadata" :href="$data.meta.indieAuth.metadataEndpoint" />
+<link
+  rel="authorization_endpoint"
+  :href="$data.meta.indieAuth.authorizationEndpoint"
+/>
+<link rel="token_endpoint" :href="$data.meta.indieAuth.tokenEndpoint" />
+<link rel="micropub" :href="$data.meta.micropub.endpoint" />
+<link
+  rel="webmention"
+  :href="`${$data.meta.webmention.endpoint}/${$data.meta.domain}/webmention`"
+/>
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  :title="`${$data.meta.siteName} (Atom)`"
+  :href="`${$data.meta.url}/feed.xml`"
+/>
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  :title="`${$data.meta.siteName} (RSS)`"
+  :href="`${$data.meta.url}/rss.xml`"
+/>
+<link webc:for="link in $data.meta.author.relMe" rel="me" :href="link.url" />

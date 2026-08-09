@@ -1,0 +1,15 @@
+---js
+{
+  pagination: {
+    data: "collections.tagList",
+    size: 1,
+    alias: "tag"
+  },
+  permalink: function(data) {
+    return `/tags/${this.slugify(data.tag)}/`
+  },
+  layout: "base",
+}
+---
+<h1 :@text="tag"></h1>
+<h-feed :@feedItems="collections[tag].slice().reverse()" :@feedTitle="tag"></h-feed>

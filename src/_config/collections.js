@@ -6,6 +6,10 @@ function getFromFolder(collectionApi, folder) {
   return collectionApi.getFilteredByGlob(`src/${folder}/**/*.md`).reverse();
 }
 
+function getAllBookmarks(collectionApi) {
+  return getFromFolder('bookmarks');
+}
+
 function showInSitemap(collectionApi) {
   return collectionApi.getAll().filter(function (item) {
     return !item.data.eleventyExcludeFromCollections && item.url;
@@ -18,7 +22,7 @@ function tagList(collectionApi) {
     if (item.data.tags) {
       item.data.tags
         .filter(function (tag) {
-          return !collections.push('all').includes(tag);
+          return !collections.includes(tag);
         })
         .forEach(function (tag) {
           tags.add(tag);
@@ -36,4 +40,4 @@ function getAllContent(collectionApi) {
   });
 }
 
-module.exports = { getAllPosts, getAllNotes, getAllBookmarks, getAllReplies, getAllContent, showInSitemap, tagList };
+module.exports = { getFromFolder, getAllContent, showInSitemap, tagList };

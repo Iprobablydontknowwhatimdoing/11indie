@@ -5,13 +5,17 @@ function getLinkActiveState(itemUrl, pageUrl) {
   let response = '';
   if (typeof pageUrl === 'string') {
     if (itemUrl === pageUrl) {
-      response = ' aria-current="page"';
-    }
-    if (itemUrl.length > 1 && pageUrl.startsWith(itemUrl)) {
-      response = ' aria-current="page" data-state="active"';
+      return 'page'
     }
   }
-  return response;
+}
+
+function getCurrentPage(itemUrl, pageUrl) {
+  if (typeof pageUrl === 'string') {
+    if (itemUrl === pageUrl) {
+      return 'page'
+    }
+  }
 }
 
 /**
@@ -34,6 +38,7 @@ function random() {
 }
 
 module.exports = {
+  getCurrentPage,
   getLinkActiveState,
   filterCollectionByKeys,
   random

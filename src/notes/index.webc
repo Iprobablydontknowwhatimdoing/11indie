@@ -1,0 +1,8 @@
+---
+layout: base
+title: Notes
+permalink: /notes/
+description: Short notes and status updates.
+---
+<h1 :@text="title"></h1>
+<h-feed :@feedItems="collections.allNotes" @feedTitle="Notes"></h-feed>

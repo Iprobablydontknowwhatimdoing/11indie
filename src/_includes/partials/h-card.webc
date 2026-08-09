@@ -1,0 +1,29 @@
+<div class="h-card" rel="me">
+  <img
+    webc:if="$data.meta.author.photo"
+    src="./src/assets/images/avatar.jpg"
+    :alt="$data.meta.author.name"
+    widths="80,160"
+    sizes="80px"
+    class="u-photo"
+    formats="avif,webp"
+  />
+  <a class="p-name u-url" :href="$data.meta.url" :@text="$data.meta.author.name"></a>
+  <p webc:if="$data.meta.author.note" class="p-note" :@text="$data.meta.author.note"></p>
+
+  <div class="cluster">
+    <a
+      webc:for="link of $data.meta.author.relMe"
+      class="u-url"
+      :href="link.url"
+      rel="me"
+      :@text="link.name"
+    ></a>
+    <a
+      webc:if="$data.meta.author.email"
+      class="u-email"
+      :href="`mailto:${$data.meta.author.email}`"
+      :@text="$data.meta.author.email"
+    ></a>
+  </div>
+</div>

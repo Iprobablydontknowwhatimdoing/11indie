@@ -1,15 +1,38 @@
-const yaml = require('js-yaml');
-const rssPlugin = require('@11ty/eleventy-plugin-rss');
-const { getAllPosts, getAllNotes, getAllBookmarks, getAllReplies, getAllContent, showInSitemap, tagList } = require('./src/_config/collections');
+const pluginYaml = require('js-yaml');
+const pluginFeed = require('@11ty/eleventy-plugin-rss');
+const pluginWebc = require("@11ty/eleventy-plugin-webc");
+const { getFromFolder, getAllContent, showInSitemap, tagList } = require('./src/_config/collections');
 const filters = require('./src/_config/filters');
 const { year, image } = require('./src/_config/shortcodes');
 const events = require('./src/_config/events');
-const webc = require("@11ty/eleventy-plugin-webc");
+const meta = require('./src/_data/meta');
 
 module.exports = function (eleventyConfig) {
+  
   // Plugins
-  eleventyConfig.addPlugin(rssPlugin);
-  eleventyConfig.addPlugin(webc);
+  /* eleventyConfig.addPlugin(pluginFeed, {
+    type: "atom",
+    outputPath: "/feed.xml",
+    collection: {
+			name: "all", // iterate over `collections.posts`
+			limit: 10,     // 0 means no limit
+		},
+    metadata: {
+			language: meta.lang,
+			title: meta.siteName,
+			subtitle: meta.siteDescription,
+			base: meta.url,
+			author: {
+				name: meta.name,
+				email: meta.email,
+			}
+		}
+  }); */
+
+  eleventyConfig.addPlugin(pluginWebc, {
+    components: ["src/_includes/**/*.webc"],
+  });
+  
   // Build events
   eleventyConfig.on('eleventy.after', async function () {
     await events.cssBundle();
@@ -20,15 +43,15 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget('./src/assets/**/*.css');
 
   // Layout aliases
-  eleventyConfig.addLayoutAlias('base', 'base.njk');
-  eleventyConfig.addLayoutAlias('post', 'post.njk');
+  eleventyConfig.addLayoutAlias('base', 'base.webc');
+  eleventyConfig.addLayoutAlias('post', 'post.webc');
 
   // Collections
-  eleventyConfig.addCollection('allPosts', getAllPosts);
-  eleventyConfig.addCollection('allNotes', getAllNotes);
-  eleventyConfig.addCollection('allBookmarks', getAllBookmarks);
-  eleventyConfig.addCollection('allReplies', getAllReplies);
-  eleventyConfig.addCollection('allContent', getAllContent);
+  eleventyConfig.addCollection('allPosts', (collectionsApi) => getFromFolder(collectionsApi, 'all'));
+  eleventyConfig.addCollection('allNotes', (collectionsApi) => getFromFolder(collectionsApi, 'notes'));
+  eleventyConfig.addCollection('allBookmarks', (collectionsApi) => getFromFolder(collectionsApi, 'bookmarks'));
+  eleventyConfig.addCollection('allReplies', (collectionsApi) => getFromFolder(collectionsApi, 'replies'));
+  eleventyConfig.addCollection('allContent', (collectionsApi) => getFromFolder(collectionsApi, 'content'));
   eleventyConfig.addCollection('showInSitemap', showInSitemap);
   eleventyConfig.addCollection('tagList', tagList);
 
@@ -50,7 +73,7 @@ module.exports = function (eleventyConfig) {
 
   // YAML data file support
   eleventyConfig.addDataExtension('yaml', function (contents) {
-    return yaml.load(contents);
+    return pluginYaml.load(contents);
   });
 
   // Passthrough copy (CSS handled by cssBundle build event)
@@ -68,8 +91,8 @@ module.exports = function (eleventyConfig) {
       data: '_data',
       output: '_site'
     },
-    templateFormats: ['njk', 'liquid', 'md', 'html'],
-    htmlTemplateEngine: 'njk',
+    templateFormats: ['njk', 'liquid', 'md', 'html', 'webc'],
+    htmlTemplateEngine: 'webc',
     markdownTemplateEngine: 'njk'
   };
 };
