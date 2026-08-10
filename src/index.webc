@@ -3,6 +3,6 @@ layout: base
 title: Home
 ---
 <div class="wrapper">
-    <h1 :@text="title"></h1>
-    <h-feed :@feedItems="collections.all"></h-feed>
+    <h1 @text="title"></h1>
+    <h-feed @feedItems="collections.all"></h-feed>
 </div>

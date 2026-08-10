@@ -4,5 +4,5 @@ title: Replies
 permalink: /replies/
 description: Replies to other posts and conversations.
 ---
-<h1 :@text="title"></h1>
-<h-feed :@feedItems="collections.allReplies" @feedTitle="Replies"></h-feed>
+<h1 @text="title"></h1>
+<h-feed @feedItems="collections.allReplies" @feedTitle="Replies"></h-feed>

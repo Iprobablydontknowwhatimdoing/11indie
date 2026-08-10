@@ -6,7 +6,7 @@
         <a
           :href="item.url"
           :aria-current="$data.helpers.getCurrentPage(item.url, $data.page.url)"
-          :@text="item.text"
+          @text="item.text"
         ></a>
       </li>
     </ul>

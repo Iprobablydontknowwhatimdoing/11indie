@@ -1,17 +1,17 @@
 <div class="h-feed">
-  <p class="p-name" :@text="feedTitle || $data.meta.siteName"></p>
+  <p class="p-name" @text="feedTitle || $data.meta.siteName"></p>
     <article class="h-entry" webc:for="item of feedItems">
         <h2 class="p-name" webc:if="item.data.title">
-          <a class="u-url" :href="item.url" :@text="item.data.title"></a>
+          <a class="u-url" :href="item.url" @text="item.data.title"></a>
         </h2>
         <p class="e-content" webc:else>
-          <a class="u-url" :href="item.url" :@text="item.templateContent.striptags().truncate(120, false, '…')"></a>
+          <a class="u-url" :href="item.url" @text="item.templateContent.striptags().truncate(120, false, '…')"></a>
         </p>
-        <p class="p-summary" webc:if="item.data.summary" :@text="item.data.summary"></p>
-      <time class="dt-published" :datetime="item.date.toISOString()" :@text="item.date.formatDate()"></time>
+        <p class="p-summary" webc:if="item.data.summary" @text="item.data.summary"></p>
+      <time class="dt-published" :datetime="item.date.toISOString()" @text="item.date.formatDate()"></time>
       <div class="cluster">
-        <a class="button tag" :href="item.data.contentUrl" :@text="item.data.contentType"></a>
-        <a class="p-author h-card" :href="$data.meta.url" :@text="$data.meta.author.name"></a>
+        <a class="button tag" :href="item.data.contentUrl" @text="item.data.contentType"></a>
+        <a class="p-author h-card" :href="$data.meta.url" @text="$data.meta.author.name"></a>
       </div>
     </article>
 </div>

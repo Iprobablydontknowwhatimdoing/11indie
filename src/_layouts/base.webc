@@ -4,12 +4,7 @@
 <!DOCTYPE html>
 <html :lang="$data.meta.lang">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title :@text="title ? `${title} | ${$data.meta.siteName}` : $data.meta.siteName"></title>
-  <css-link></css-link>
-  <meta-info></meta-info>
-  <indie-web></indie-web>
+  <template webc:is="site-head" webc:nokeep></template>
 </head>
 <body class="layout">
   <a href="#main-content" class="skip-link">Skip to main content</a>

@@ -4,5 +4,5 @@ title: Bookmarks
 permalink: /bookmarks/
 description: Links worth saving.
 ---
-<h1 :@text="title"></h1>
-<h-feed @feedTitle="Bookmarks" :@feedItems="collections.allBookmarks"></h-feed>
+<h1 @text="title"></h1>
+<h-feed @feedTitle="Bookmarks" @feedItems="collections.allBookmarks"></h-feed>

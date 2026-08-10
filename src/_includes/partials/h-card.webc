@@ -8,8 +8,8 @@
     class="u-photo"
     formats="avif,webp"
   />
-  <a class="p-name u-url" :href="$data.meta.url" :@text="$data.meta.author.name"></a>
-  <p webc:if="$data.meta.author.note" class="p-note" :@text="$data.meta.author.note"></p>
+  <a class="p-name u-url" :href="$data.meta.url" @text="$data.meta.author.name"></a>
+  <p webc:if="$data.meta.author.note" class="p-note" @text="$data.meta.author.note"></p>
 
   <div class="cluster">
     <a
@@ -17,13 +17,13 @@
       class="u-url"
       :href="link.url"
       rel="me"
-      :@text="link.name"
+      @text="link.name"
     ></a>
     <a
       webc:if="$data.meta.author.email"
       class="u-email"
       :href="`mailto:${$data.meta.author.email}`"
-      :@text="$data.meta.author.email"
+      @text="$data.meta.author.email"
     ></a>
   </div>
 </div>

@@ -1,22 +1,22 @@
-  <meta name="description" :content="description || $data.meta.siteDescription">
-  <meta name="author" :content="$data.meta.author.name">
-  <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#8bbae7" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#240a37" media="(prefers-color-scheme: dark)">
-  <meta property="og:title" :content="title || $data.meta.siteName">
-  <meta property="og:description" :content="description || $data.meta.siteDescription">
-  <meta property="og:type" content="website">
-  <meta property="og:url" :content="$data.meta.url + $data.page.url">
-  <meta property="og:site_name" :content="$data.meta.siteName">
-  <template webc:if="tags && ('posts' in tags || 'notes' in tags || 'bookmarks' in tags || 'replies' in tags)" webc:nokeep>
-    <meta property="og:image" content="`${$data.meta.url}/assets/og-images/${page.fileSlug}-preview.jpeg`">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="`${$data.meta.url}/assets/og-images/${$data.page.fileSlug}-preview.jpeg`">
-  </template>
-  <meta webc:else name="twitter:card" content="summary">
-  <link rel="canonical" href="$data.meta.url + $data.page.url">
-  <link rel="icon" href="/favicon.ico" sizes="32x32">
-  <link rel="icon" href="/assets/images/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<meta name="description" :content="description || $data.meta.siteDescription">
+<meta name="author" :content="$data.meta.author.name">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#8bbae7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#240a37" media="(prefers-color-scheme: dark)">
+<meta property="og:title" :content="title || $data.meta.siteName">
+<meta property="og:description" :content="description || $data.meta.siteDescription">
+<meta property="og:type" content="website">
+<meta property="og:url" :content="$data.meta.url + $data.page.url">
+<meta property="og:site_name" :content="$data.meta.siteName">
+<template webc:if="tags && ('posts' in tags || 'notes' in tags || 'bookmarks' in tags || 'replies' in tags)" webc:nokeep>
+  <meta property="og:image" content="`${$data.meta.url}/assets/og-images/${page.fileSlug}-preview.jpeg`">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="`${$data.meta.url}/assets/og-images/${$data.page.fileSlug}-preview.jpeg`">
+</template>
+<meta webc:else name="twitter:card" content="summary">
+<link rel="canonical" href="$data.meta.url + $data.page.url">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/images/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
