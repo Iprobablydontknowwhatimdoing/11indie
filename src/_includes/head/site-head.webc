@@ -1,8 +1,10 @@
 <title
   @text="title ? `${title} | ${$data.meta.siteName}` : $data.meta.siteName"
 ></title>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <template webc:is="meta-info" webc:nokeep></template>
 <template webc:is="indie-web" webc:nokeep></template>
 <template webc:is="css-link" webc:nokeep></template>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />

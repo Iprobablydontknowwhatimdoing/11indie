@@ -1,18 +1,18 @@
+<!DOCTYPE html>
 <script webc:setup>
   const assetHash = helpers.random();
 </script>
-<!DOCTYPE html>
 <html :lang="$data.meta.lang">
-<head>
-  <template webc:is="site-head" webc:nokeep></template>
-</head>
-<body class="layout">
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-  <site-header></site-header>
-  <main id="main-content">
-    <slot>Oops! Nothing Here :(</slot>
-  </main>
-  <site-footer></site-footer>
-  <script src="../assets/js/webmentions.js" defer></script>
-</body>
+  <head>
+    <template webc:is="site-head" webc:nokeep></template>
+  </head>
+  <body class="layout">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <site-header></site-header>
+    <main id="main-content">
+      <template @raw="content" webc:nokeep></template>
+    </main>
+    <site-footer></site-footer>
+    <script src="../assets/js/webmentions.js" defer></script>
+  </body>
 </html>

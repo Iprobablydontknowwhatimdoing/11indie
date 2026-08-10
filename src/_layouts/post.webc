@@ -1,13 +1,12 @@
 ---
 layout: base
+title: posts
 ---
 <!--something happened here with a memory leak, idk why-->
 <article class="h-entry">
   <h-entry-meta></h-entry-meta>
   <section class="e-content">
-    <slot>
-      Whoops! Nothing Here.
-    </slot>
+    <template @raw="content" webc:nokeep></template>
   </section>
   <aside role="note">
     Posted
